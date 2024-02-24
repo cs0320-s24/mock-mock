@@ -21,13 +21,14 @@ export function REPLInput(props: REPLInputProps) {
   // Manages the contents of the input box
   const [commandString, setCommandString] = useState<string>("");
   const [count, setCount] = useState<number>(0);
+  const [file, setFile] = useState<string[][]>([]);
 
   const handleArgs = (input: string): JSX.Element => {
     const [command, ...args] = input.split(" ");
 
     const argFuncResult = REPLCommandRegistry[command]
-      ? REPLCommandRegistry[command](args)
-      : REPLCommandRegistry["default"](args);
+      ? REPLCommandRegistry[command](args, file, setFile)
+      : REPLCommandRegistry["default"](args, file, setFile);
 
     return <REPLResult output={argFuncResult} command={command} />;
   };

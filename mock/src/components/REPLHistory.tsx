@@ -3,6 +3,7 @@ import "../styles/main.css";
 interface REPLHistoryProps {
   commands: JSX.Element[];
 }
+
 export function REPLHistory(props: REPLHistoryProps) {
   return (
     <div className="repl-history">
