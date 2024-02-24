@@ -2,12 +2,11 @@ import "../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { ControlledInput } from "./ControlledInput";
 import { REPLCommandRegistry } from "./REPLCommandRegisty";
+import REPLResult from "./REPLResult";
 
 interface REPLInputProps {
-  commands: string[];
-  setCommands: Dispatch<SetStateAction<string[]>>;
-  results: string[];
-  setResults: Dispatch<SetStateAction<string[]>>;
+  replResults: JSX.Element[];
+  setReplResults: Dispatch<SetStateAction<JSX.Element[]>>;
   // TODO: Fill this with desired props... Maybe something to keep track of the submitted commands
 }
 
@@ -23,64 +22,23 @@ export function REPLInput(props: REPLInputProps) {
   const [commandString, setCommandString] = useState<string>("");
   const [count, setCount] = useState<number>(0);
 
-  const handleArgs = (input: string): string => {
+  const handleArgs = (input: string): JSX.Element => {
     const [command, ...args] = input.split(" ");
 
     const argFuncResult = REPLCommandRegistry[command]
       ? REPLCommandRegistry[command](args)
       : REPLCommandRegistry["default"](args);
 
-    return argFuncResult;
+    return <REPLResult output={argFuncResult} command={command} />;
   };
   /**
    * We suggest breaking down this component into smaller components, think about the individual pieces
    * of the REPL and how they connect to each other...
    */
-  const handleSubmit = () => {
+  const handleSubmit = (commandString: string) => {
     setCount(count + 1);
-    const output = handleArgs(commandString);
-
-    props.setCommands([...props.commands, commandString]);
-    props.setResults([...props.results, output]);
-    // if (this.args.length < 2) {
-    //   System.err.println("Insufficient arguments,");
-    //   this.printUsage();
-    //   System.exit(1);
-    // }
-
-    // String file = this.args[0];
-    // String term = this.args[1];
-    // boolean caseSensitive = false;
-    // boolean hasHeader = false;
-    // String targetColumn = "";
-
-    // for (int i = 2; i < this.args.length; i++) {
-    //   switch (this.args[i]) {
-    //       // used to indicate that the file has a header.
-    //     case "-h":
-    //       hasHeader = true;
-    //       break;
-    //       // used to indicate a target column identifier
-    //     case "-c":
-    //       try {
-    //         targetColumn = this.args[i + 1];
-    //         i++;
-    //       } catch (ArrayIndexOutOfBoundsException e) {
-    //         System.err.print("Insufficient arguments, expected a column identifier after -c");
-    //         this.printUsage();
-    //         System.exit(1);
-    //       }
-    //       break;
-    //     case "-cs":
-    //       caseSensitive = true;
-    //       break;
-    //     default:
-    //       System.err.print("Unknown flag: " + this.args[i]);
-    //       this.printUsage();
-    //       System.exit(1);
-    //       break;
-    //   }
-    // }
+    const replResult = handleArgs(commandString);
+    props.setReplResults([...props.replResults, replResult]);
   };
 
   return (
@@ -99,7 +57,9 @@ export function REPLInput(props: REPLInputProps) {
       </fieldset>
       {/* TODO WITH TA: Build a handleSubmit function that increments count and displays the text in the button */}
       {/* TODO: Currently this button just counts up, can we make it push the contents of the input box to the history?*/}
-      <button onClick={handleSubmit}> Submitted {count} times</button>
+      <button onClick={() => handleSubmit(commandString)}>
+        Submitted {count} times
+      </button>
     </div>
   );
 }

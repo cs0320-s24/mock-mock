@@ -13,8 +13,8 @@ import { REPLInput } from "./REPLInput";
 */
 
 export default function REPL() {
-  const [commands, setCommands] = useState<string[]>([]);
-  const [results, setResults] = useState<string[]>([]);
+
+  const [results, setResults] = useState<JSX.Element[]>([]);
   // TODO: Add some kind of shared state that holds all the commands submitted.
 
   return (
@@ -25,10 +25,8 @@ export default function REPL() {
       <REPLHistory commands={results} />
       <hr></hr>
       <REPLInput
-        commands={commands}
-        setCommands={setCommands}
-        results={results}
-        setResults={setResults}
+        replResults={results}
+        setReplResults={setResults}
       />
     </div>
   );
