@@ -2,11 +2,11 @@ import "../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { ControlledInput } from "./ControlledInput";
 import { REPLCommandRegistry } from "./REPLCommandRegisty";
-import REPLResult from "./REPLResult";
+import REPLResult, { REPLResultProps } from "./REPLResult";
 
 interface REPLInputProps {
-  replResults: JSX.Element[];
-  setReplResults: Dispatch<SetStateAction<JSX.Element[]>>;
+  replResults: REPLResultProps[];
+  setReplResults: Dispatch<SetStateAction<REPLResultProps[]>>;
   // TODO: Fill this with desired props... Maybe something to keep track of the submitted commands
 }
 
@@ -23,14 +23,14 @@ export function REPLInput(props: REPLInputProps) {
   const [count, setCount] = useState<number>(0);
   const [file, setFile] = useState<string[][]>([]);
 
-  const handleArgs = (input: string): JSX.Element => {
+  const handleArgs = (input: string): REPLResultProps => {
     const [command, ...args] = input.split(" ");
 
     const argFuncResult = REPLCommandRegistry[command]
       ? REPLCommandRegistry[command](args, file, setFile)
       : REPLCommandRegistry["default"](args, file, setFile);
 
-    return <REPLResult output={argFuncResult} command={command} />;
+    return { output: argFuncResult, command: command };
   };
   /**
    * We suggest breaking down this component into smaller components, think about the individual pieces

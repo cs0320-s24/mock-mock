@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/main.css";
 import { REPLHistory } from "./REPLHistory";
 import { REPLInput } from "./REPLInput";
+import { REPLResultProps } from "./REPLResult";
 
 /* 
   You'll want to expand this component (and others) for the sprints! Remember 
@@ -14,7 +15,7 @@ import { REPLInput } from "./REPLInput";
 
 export default function REPL() {
 
-  const [results, setResults] = useState<JSX.Element[]>([]);
+  const [results, setResults] = useState<REPLResultProps[]>([]);
   // TODO: Add some kind of shared state that holds all the commands submitted.
 
   return (

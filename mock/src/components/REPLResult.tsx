@@ -1,4 +1,4 @@
-interface REPLResultProps {
+export interface REPLResultProps {
   output: string | string[][];
   command: string;
 }
