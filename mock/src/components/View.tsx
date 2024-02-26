@@ -1,6 +1,7 @@
 import "../styles/main.css";
-import { REPLFunction } from "./REPLInterface";
+import { Dispatch, SetStateAction, useState } from "react";
+import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 
-export const View: REPLFunction = (args: Array<string>): string => {
+export const View: REPLFunction = (props: REPLFunctionProps): string | string[][] => {
   return "Viewed!";
 };

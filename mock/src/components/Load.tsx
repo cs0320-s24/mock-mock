@@ -1,10 +1,7 @@
 import "../styles/main.css";
-import { REPLFunction } from "./REPLInterface";
+import { Dispatch, SetStateAction, useState } from "react";
+import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 
-//hashmap or a record with mock filepaths. 
-
-export const Load: REPLFunction = (args: Array<string>): string => {
-    //attempt to open the file
-    //if the file opened successfully: return success/failure
+export const Load: REPLFunction = (props: REPLFunctionProps): string | string[][] => {
   return "Loaded!";
 };

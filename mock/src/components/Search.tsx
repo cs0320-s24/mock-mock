@@ -1,6 +1,7 @@
 import "../styles/main.css";
-import { REPLFunction } from "./REPLInterface";
+import { Dispatch, SetStateAction, useState } from "react";
+import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 
-export const Search: REPLFunction = (args: Array<string>): string => {
+export const Search: REPLFunction = (props: REPLFunctionProps): string | string[][] => {
   return "Searched!";
 };

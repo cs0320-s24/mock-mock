@@ -22,15 +22,16 @@ export function REPLInput(props: REPLInputProps) {
   const [commandString, setCommandString] = useState<string>("");
   const [count, setCount] = useState<number>(0);
   const [file, setFile] = useState<string[][]>([]);
+  const [mode, setMode] = useState<boolean>(false);
 
   const handleArgs = (input: string): REPLResultProps => {
     const [command, ...args] = input.split(" ");
 
     const argFuncResult = REPLCommandRegistry[command]
-      ? REPLCommandRegistry[command](args, file, setFile)
-      : REPLCommandRegistry["default"](args, file, setFile);
+      ? REPLCommandRegistry[command]({args, file, setFile, mode, setMode})
+      : REPLCommandRegistry["default"]({args, file, setFile, mode, setMode});
 
-    return { output: argFuncResult, command: command };
+    return { output: argFuncResult, command: command, mode: mode };
   };
   /**
    * We suggest breaking down this component into smaller components, think about the individual pieces

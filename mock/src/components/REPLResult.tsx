@@ -1,6 +1,7 @@
 export interface REPLResultProps {
   output: string | string[][];
   command: string;
+  mode: boolean;
 }
 
 export function REPLResult(props: REPLResultProps): JSX.Element {

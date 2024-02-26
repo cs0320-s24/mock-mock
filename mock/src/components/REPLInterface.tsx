@@ -1,9 +1,14 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
+export interface REPLFunctionProps {
+  args: Array<string>;
+  file: string[][];
+  setFile: Dispatch<SetStateAction<string[][]>>;
+  mode: boolean;
+  setMode: Dispatch<SetStateAction<boolean>>;
+}
 export interface REPLFunction {
   (
-    args: Array<string>,
-    file: string[][],
-    setFile: Dispatch<SetStateAction<string[][]>>
-  ): string;
+    props: REPLFunctionProps
+  ): string | string[][];
 }
