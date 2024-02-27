@@ -8,7 +8,7 @@ interface REPLHistoryProps {
 export function REPLHistory(props: REPLHistoryProps) {
   return (
     <div className="repl-history">
-      {props.commands.map((result, index) => (
+      {props.commands.map((result) => (
         <REPLResult output={result.output} command={result.command} mode={result.mode}/>
       ))}
       {/* This is where command history will go */}

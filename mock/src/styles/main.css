@@ -29,3 +29,19 @@ button {
   margin: auto;
   display: block;
 }
+
+.badInputStyle {
+  background: "red" !important;
+  color: "white" !important;
+}
+
+.result {
+  padding: 15px;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+  margin: auto;
+}

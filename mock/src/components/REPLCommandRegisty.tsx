@@ -2,7 +2,7 @@ import { Load } from "./Load";
 import { REPLFunction } from "./REPLInterface";
 import { Search } from "./Search";
 import { View } from "./View";
-import { Mode } from "./mode";
+import { Mode } from "./Mode";
 
 export const REPLCommandRegistry: Record<string, REPLFunction> = {
   load: Load,
