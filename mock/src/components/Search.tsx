@@ -6,6 +6,12 @@ import { getRandomSearchResponse } from "../mock_data/MockSearchResponses";
 export const Search: REPLFunction = (
   props: REPLFunctionProps
 ): string | string[][] => {
+  if (props.args.length > 2) {
+    return [["error", "Received <" + props.args.length + "> expected 1 or 2"]];
+  } else if (props.args.length < 1) {
+    return [["error", "Received <0> args Expected 1 or 2"]];
+  }
+
   if (props.file.length == 0) {
     return [["error: ", "No File Data Found"]];
   }
