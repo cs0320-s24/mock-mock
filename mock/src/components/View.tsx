@@ -5,5 +5,5 @@ import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 export const View: REPLFunction = (
   props: REPLFunctionProps
 ): string | string[][] => {
-  return "Viewed!";
+  return props.file;
 };
