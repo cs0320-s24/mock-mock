@@ -7,11 +7,9 @@ import REPLResult, { REPLResultProps } from "./REPLResult";
 interface REPLInputProps {
   replResults: REPLResultProps[];
   setReplResults: Dispatch<SetStateAction<REPLResultProps[]>>;
+  mode: boolean;
+  setMode: Dispatch<SetStateAction<boolean>>;
   // TODO: Fill this with desired props... Maybe something to keep track of the submitted commands
-}
-
-export interface REPLFunction {
-  (args: Array<string>): String | String[][];
 }
 
 // You can use a custom interface or explicit fields or both! An alternative to the current function header might be:
@@ -22,16 +20,42 @@ export function REPLInput(props: REPLInputProps) {
   const [commandString, setCommandString] = useState<string>("");
   const [count, setCount] = useState<number>(0);
   const [file, setFile] = useState<string[][]>([]);
-  const [mode, setMode] = useState<boolean>(false);
+  // const [mode, setMode] = useState<boolean>(false);
 
-  const handleArgs = (input: string): REPLResultProps => {
+  const handleArgs = (
+    input: string,
+    props: REPLInputProps
+  ): REPLResultProps => {
     const [command, ...args] = input.split(" ");
 
-    const argFuncResult = REPLCommandRegistry[command]
-      ? REPLCommandRegistry[command]({args, file, setFile, mode, setMode})
-      : REPLCommandRegistry["default"]({args, file, setFile, mode, setMode});
+    const argFuncResult = (
+      mode: boolean,
+      setMode: Dispatch<SetStateAction<boolean>>
+    ) => {
+      if (REPLCommandRegistry[command]) {
+        return REPLCommandRegistry[command]({
+          args,
+          file,
+          setFile,
+          mode,
+          setMode,
+        });
+      } else {
+        return REPLCommandRegistry["default"]({
+          args,
+          file,
+          setFile,
+          mode,
+          setMode,
+        });
+      }
+    };
 
-    return { output: argFuncResult, command: command, mode: mode };
+    return {
+      output: argFuncResult(props.mode, props.setMode),
+      command: command,
+      mode: props.mode,
+    };
   };
   /**
    * We suggest breaking down this component into smaller components, think about the individual pieces
@@ -39,9 +63,9 @@ export function REPLInput(props: REPLInputProps) {
    */
   const handleSubmit = (commandString: string) => {
     setCount(count + 1);
-    const replResult = handleArgs(commandString);
-    replResult.mode = mode; 
+    const replResult = handleArgs(commandString, props);
     props.setReplResults([...props.replResults, replResult]);
+    setCommandString("");
   };
 
   return (
