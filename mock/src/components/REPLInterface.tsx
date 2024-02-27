@@ -8,7 +8,5 @@ export interface REPLFunctionProps {
   setMode: Dispatch<SetStateAction<boolean>>;
 }
 export interface REPLFunction {
-  (
-    props: REPLFunctionProps
-  ): string | string[][];
+  (props: REPLFunctionProps): string | string[][];
 }

@@ -10,5 +10,4 @@ export const REPLCommandRegistry: Record<string, REPLFunction> = {
   view: View,
   mode: Mode,
   default: () => "Command not found",
-
 };

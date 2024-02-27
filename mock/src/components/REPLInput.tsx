@@ -40,6 +40,7 @@ export function REPLInput(props: REPLInputProps) {
   const handleSubmit = (commandString: string) => {
     setCount(count + 1);
     const replResult = handleArgs(commandString);
+    replResult.mode = mode; 
     props.setReplResults([...props.replResults, replResult]);
   };
 

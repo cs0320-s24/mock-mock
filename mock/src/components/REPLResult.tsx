@@ -13,7 +13,7 @@ export function REPLResult(props: REPLResultProps): JSX.Element {
     //if the command is search or view, make output into a table
     if (props.command == "search" || props.command == "view") {
       return (
-        <div className="result">
+        <div className="output">
           <Table tableInfo={props.output as string[][]} />
         </div>
       );
@@ -21,7 +21,7 @@ export function REPLResult(props: REPLResultProps): JSX.Element {
       //if the command is load or mode, then just print out single response
     } else if (props.command == "load" || props.command == "mode") {
       return (
-        <div className="result">
+        <div className="output">
           <p>{props.output}</p>
         </div>
       );
@@ -29,24 +29,25 @@ export function REPLResult(props: REPLResultProps): JSX.Element {
       //if command is not found, then highlight red and print command not found message
     } else {
       return (
-        <p className="badInputStyle result">
+        <p className="badInputStyle output">
           Command: "{props.command}" not found!
         </p>
       );
     }
   };
 
+  let output = formatOutput(props);
   //if verbose is off just use formatted output
   if (props.mode == false) {
-    return formatOutput(props);
+    return <div className="result">{output}</div>;
 
     //if verbose is on, add extra info and then formatOutputs
   } else {
     return (
-      <div>
+      <div className="result">
         <p>Command: {props.command}</p>
         <p>Output: </p>
-        {formatOutput(props)}
+        {output}
       </div>
     );
   }

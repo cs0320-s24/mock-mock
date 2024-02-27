@@ -35,8 +35,17 @@ button {
   color: "white" !important;
 }
 
-.result {
+.output {
   padding: 15px;
+}
+
+.result {
+  width: 50%;
+  border: 5px solid blue;
+  padding: 10px;
+  margin: 10px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 table,
