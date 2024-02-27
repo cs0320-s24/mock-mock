@@ -21,7 +21,7 @@ export function REPLResult(props: REPLResultProps): JSX.Element {
       //if the command is load or mode, then just print out single response
     } else if (props.command == "load" || props.command == "mode") {
       return (
-        <div className="output">
+        <div>
           <p>{props.output}</p>
         </div>
       );
@@ -38,7 +38,7 @@ export function REPLResult(props: REPLResultProps): JSX.Element {
 
   let output = formatOutput(props);
   //if verbose is off just use formatted output
-  if (props.mode == false) {
+  if (props.mode == false ) {
     return <div className="result">{output}</div>;
 
     //if verbose is on, add extra info and then formatOutputs
