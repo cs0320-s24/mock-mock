@@ -5,5 +5,9 @@ import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 export const View: REPLFunction = (
   props: REPLFunctionProps
 ): string | string[][] => {
-  return props.file;
+  if (props.file.length > 0) {
+    return props.file;
+  } else {
+    return [["error: ", "No Data Found"]];
+  }
 };
