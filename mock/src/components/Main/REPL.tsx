@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "../styles/main.css";
-import { REPLHistory } from "./REPLHistory";
-import { REPLInput } from "./REPLInput";
-import { REPLResultProps } from "./REPLResult";
+import "../../styles/main.css";
+import { REPLHistory } from "../REPLResponses/REPLHistory";
+import { REPLInput } from "../REPLInput/REPLInput";
+import { REPLResultProps } from "../REPLResponses/REPLResult";
 
 /* 
   You'll want to expand this component (and others) for the sprints! Remember 
@@ -14,7 +14,6 @@ import { REPLResultProps } from "./REPLResult";
 */
 
 export default function REPL() {
-
   const [results, setResults] = useState<REPLResultProps[]>([]);
   const [mode, setMode] = useState<boolean>(false);
   // TODO: Add some kind of shared state that holds all the commands submitted.

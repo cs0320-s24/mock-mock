@@ -1,4 +1,4 @@
-import "../styles/main.css";
+import "../../styles/main.css";
 import Table from "./FormatTable";
 
 export interface REPLResultProps {

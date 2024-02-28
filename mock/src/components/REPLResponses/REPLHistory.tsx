@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "../styles/main.css";
+import "../../styles/main.css";
 import REPLResult, { REPLResultProps } from "./REPLResult";
 
 interface REPLHistoryProps {
@@ -8,9 +8,8 @@ interface REPLHistoryProps {
 }
 
 export function REPLHistory(props: REPLHistoryProps) {
-
   const ref = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     if (props.commands.length) {
       ref.current?.scrollIntoView({
@@ -20,7 +19,6 @@ export function REPLHistory(props: REPLHistoryProps) {
     }
   }, [props.commands.length]);
 
-  
   return (
     <div className="repl-history">
       <div>

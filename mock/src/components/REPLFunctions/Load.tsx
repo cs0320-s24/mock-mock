@@ -1,5 +1,5 @@
-import { MockCSVFiles } from "../mock_data/MockCSVFiles";
-import "../styles/main.css";
+import { MockCSVFiles } from "../../mock_data/MockCSVFiles";
+import "../../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 

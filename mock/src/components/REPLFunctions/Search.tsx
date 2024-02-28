@@ -1,7 +1,7 @@
-import "../styles/main.css";
+import "../../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
-import { getRandomSearchResponse } from "../mock_data/MockSearchResponses";
+import { getRandomSearchResponse } from "../../mock_data/MockSearchResponses";
 
 export const Search: REPLFunction = (
   props: REPLFunctionProps

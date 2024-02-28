@@ -1,4 +1,4 @@
-import "../styles/main.css";
+import "../../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 

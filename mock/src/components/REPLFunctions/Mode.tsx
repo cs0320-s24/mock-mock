@@ -1,11 +1,10 @@
-import "../styles/main.css";
+import "../../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 
 export const Mode: REPLFunction = (
   props: REPLFunctionProps
 ): string | string[][] => {
-
   //if user wants verbose, set mode constant to true
   if ("verbose" == props.args[0]) {
     props.setMode(true);

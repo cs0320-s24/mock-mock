@@ -1,8 +1,8 @@
-import "../styles/main.css";
+import "../../styles/main.css";
 import { Dispatch, SetStateAction, useState } from "react";
 import { ControlledInput } from "./ControlledInput";
-import { REPLCommandRegistry } from "./REPLCommandRegisty";
-import REPLResult, { REPLResultProps } from "./REPLResult";
+import { REPLCommandRegistry } from "../REPLFunctions/REPLCommandRegisty";
+import REPLResult, { REPLResultProps } from "../REPLResponses/REPLResult";
 
 interface REPLInputProps {
   replResults: REPLResultProps[];
