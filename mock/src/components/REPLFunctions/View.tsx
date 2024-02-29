@@ -11,6 +11,6 @@ export const View: REPLFunction = (
   if (props.file.length > 0) {
     return props.file;
   } else {
-    return [["error: ", "No Data Found"]];
+    return [["error", "No Data Found"]];
   }
 };
