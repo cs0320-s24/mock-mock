@@ -5,6 +5,9 @@ import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 export const Mode: REPLFunction = (
   props: REPLFunctionProps
 ): string | string[][] => {
+  if (props.args.length == 0) {
+    return "Insufficient arguments. Expected 'verbose' or 'brief'";
+  }
   //if user wants verbose, set mode constant to true
   if ("verbose" == props.args[0]) {
     props.setMode(true);
