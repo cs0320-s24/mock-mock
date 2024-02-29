@@ -7,10 +7,10 @@ export const Load: REPLFunction = (
   props: REPLFunctionProps
 ): string | string[][] => {
   if (props.args.length < 1) {
-    return "Insufficient arguments. Expected: 1, Received 0";
+    return "Insufficient arguments. Expected: 1, Received: 0";
   } else if (props.args.length > 1) {
     return (
-      "Received too many arguments. Expected 1, Received " + props.args.length
+      "Received too many arguments. Expected: 1, Received: " + props.args.length
     );
   }
 
@@ -22,5 +22,5 @@ export const Load: REPLFunction = (
   }
 
   props.setFile(MockCSVFiles[file]);
-  return "successfully loaded";
+  return "Successfully loaded";
 };
