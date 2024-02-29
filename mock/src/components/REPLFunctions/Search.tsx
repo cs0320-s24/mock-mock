@@ -14,7 +14,9 @@ export const Search: REPLFunction = (
 ): string | string[][] => {
   let response;
   if (props.args.length > 2) {
-    return [["error", "Received <" + props.args.length + "> expected 1 or 2"]];
+    return [
+      ["error", "Received <" + props.args.length + "> args Expected 1 or 2"],
+    ];
   } else if (props.args.length < 1) {
     return [["error", "Received <0> args Expected 1 or 2"]];
   }
@@ -29,7 +31,8 @@ export const Search: REPLFunction = (
     if (props.args[0] == "error") {
       response = invalidSearch;
     }
-  } else { //we know for a fact the length must be 2 here. 
+  } else {
+    //we know for a fact the length must be 2 here.
     if (isNaN(parseInt(props.args[1]))) {
       response = getSuccessfulSearchResponseWithColumnName;
     } else {
