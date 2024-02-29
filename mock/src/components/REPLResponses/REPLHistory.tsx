@@ -20,7 +20,7 @@ export function REPLHistory(props: REPLHistoryProps) {
   }, [props.commands.length]);
 
   return (
-    <div className="repl-history">
+    <div className="repl-history" aria-label="history">
       <div>
         {props.commands.map((result) => (
           <REPLResult
