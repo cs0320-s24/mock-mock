@@ -78,11 +78,17 @@ test("I can load a file and view it then load another file and view it", async (
   await page.getByLabel("Command input").fill("load census/income_by_race.csv");
 
   //click submit and ensure that new table is created with different data
-  await page.getByRole("button", { name: "Submitted 2 times" }).click();
+    await page.getByRole("button", { name: "Submitted 2 times" }).click();
+    
+      await page.getByLabel("Command input").click();
+    await page.getByLabel("Command input").fill("view");
+    await page.getByRole("button", { name: "Submitted 3 times" }).click();
 
-  const tables = await page.$$("table"); // Assuming tables are represented by the <table> HTML tag
-  const content1 = tables[0].textContent();
-  const content2 = tables[1].textContent();
+    const tables = await page.$$("table"); // Assuming tables are represented by the <table> HTML tag
+    await tables[0].waitForSelector('tr td');
+    await tables[1].waitForSelector("tr td");
+  const content1 = await tables[0].textContent();
+  const content2 = await tables[1].textContent();
   // Now, you can interact with the tables based on their index
   // await tables[0].click(); // Click on the first table
   // await tables[1].hover();
