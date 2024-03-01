@@ -9,6 +9,9 @@ test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:8000/");
 });
 
+//------------------------------------------------------------------------
+//--------------------------LOAD------------------------------------------
+//------------------------------------------------------------------------
 test("I can load a file", async ({ page }) => {
   // login and enter command
   await page.getByLabel("Login").click();
@@ -98,6 +101,9 @@ test("I can load a file and view it then load another file and view it", async (
   await expect(content1).not.toEqual(content2);
 });
 
+//--------------------------------------------------------------------------
+//-------------------------------MODE---------------------------------------
+//--------------------------------------------------------------------------
 test("I start in mode brief", async ({ page }) => {
   // login and load
   await page.getByLabel("Login").click();
@@ -170,6 +176,9 @@ test("going back to brief after verbose works", async ({ page }) => {
   );
 });
 
+//----------------------------------------------------------------------------
+//-------------------------------LOG IN---------------------------------------
+//----------------------------------------------------------------------------
 test("I can load a file, log out, log back in, and file isn't there", async ({
   page,
 }) => {
@@ -194,4 +203,38 @@ test("I can load a file, log out, log back in, and file isn't there", async ({
   //click submit and check error message is thrown
   await page.getByRole("button", { name: "Submitted 0 times" }).click();
   await expect(page.getByRole("table")).toHaveText("errorNo Data Found");
+});
+
+//-----------------------------------------------------------------------
+//-----------------------------SEARCH------------------------------------
+//-----------------------------------------------------------------------
+test("I can't search search before loading", async ({ page }) => {
+  // login and search
+  await page.getByLabel("Login").click();
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("search token column");
+  await page.getByRole("button", { name: "Submitted 0 times" }).click();
+  await expect(page.getByLabel("history")).toHaveText(
+    "error: No File Data Found"
+  );
+});
+
+test("I can search with one arg (token)", async ({ page }) => {
+  // login
+  await page.getByLabel("Login").click();
+  // load
+  await page.getByLabel("Command input").click();
+  await page
+    .getByLabel("Command input")
+    .fill("load census/postsecondary_education.csv");
+  await page.getByRole("button", { name: "Submitted 0 times" }).click();
+  await expect(page.getByLabel("history")).toHaveText("Successfully loaded");
+
+  // command search
+  await page.getByLabel("Command input").click();
+  await page.getByLabel("Command input").fill("search token");
+  // enter command search
+  await page.getByRole("button", { name: "Submitted 1 times" }).click();
+  await expect(page.getByRole("table")).toBeVisible();
+  await expect(page.getByRole("table")).toContainText("012345678");
 });
