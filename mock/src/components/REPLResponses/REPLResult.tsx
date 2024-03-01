@@ -7,6 +7,11 @@ export interface REPLResultProps {
   mode: boolean;
 }
 
+/**
+ * Function that takes in outputs from executed commands and formats them to post on page
+ * @param props - REPLResultProps that takes in the output of a command, the command itself, and whatever mode the user is in
+ * @returns - formatted output whether the command is successful or outputs an error. This output can be in mode verbose or brief
+ */
 export function REPLResult(props: REPLResultProps): JSX.Element {
   //this formats output
   const formatOutput = (props: REPLResultProps) => {

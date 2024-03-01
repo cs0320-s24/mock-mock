@@ -1,8 +1,13 @@
 import { MockCSVFiles } from "../../mock_data/MockCSVFiles";
 import "../../styles/main.css";
-import { Dispatch, SetStateAction, useState } from "react";
 import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 
+/**
+ * Function that executes load functionality through REPLFunction interface
+ * @param props - REPLFunctionProps that takes in user arguments, a file constant to store current file in, mode that stores whether user is in verbose
+ *                or brief, and Dispatchers for file and mode to be able to be altered by other functions
+ * @returns error message if file is not found, or successfully loaded is file is loaded
+ */
 export const Load: REPLFunction = (
   props: REPLFunctionProps
 ): string | string[][] => {

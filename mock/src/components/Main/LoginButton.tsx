@@ -5,7 +5,14 @@ interface loginProps {
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
 }
 
+/**
+ * This function checks for login authentication
+ * @param props - loginProps that encompasses a boolean of whether user is logged in, and a Dispatch that changes the booleans state
+ * @returns a button component for user to switch between logged in and logged out
+ */
 export function LoginButton(props: loginProps) {
+
+  //actual logic for authenticating login
   const authenticate = () => {
     const newValue = !props.isLoggedIn;
     props.setIsLoggedIn(newValue);

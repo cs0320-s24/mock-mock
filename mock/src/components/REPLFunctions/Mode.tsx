@@ -1,7 +1,12 @@
 import "../../styles/main.css";
-import { Dispatch, SetStateAction, useState } from "react";
 import { REPLFunction, REPLFunctionProps } from "./REPLInterface";
 
+/**
+ * Function that implements REPLFunction interface that changes between modes for user
+ * @param props - REPLFunctionProps that takes in user arguments, a file constant to store current file in, mode that stores whether user is in verbose
+ *                or brief, and Dispatchers for file and mode to be able to be altered by other functions
+ * @returns Success message on proper input or error message on improper input
+ */
 export const Mode: REPLFunction = (
   props: REPLFunctionProps
 ): string | string[][] => {

@@ -9,6 +9,10 @@ interface SearchResponse {
   responseMap: ResponseData;
 }
 
+/**
+ * This const returns a random response
+ * @returns a random response for Search
+ */
 export const getRandomSearchResponse = (): SearchResponse => {
   const randInt: number = Math.floor(Math.random() * 4);
   switch (randInt) {
@@ -23,6 +27,9 @@ export const getRandomSearchResponse = (): SearchResponse => {
   }
 };
 
+/**
+ * Const that returns a random search. This dataset is in a dictionary.
+ */
 export const getSuccessfulSearchResponseWithToken = {
   response_type: "success",
   responseMap: {

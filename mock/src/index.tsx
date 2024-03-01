@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import App from "./components/Main/App";
 
-// Tim removed some boilerplate to keep things simple.
-// We're using an older version of React here.
 
+/**
+ * renders our application
+ */
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

@@ -9,19 +9,21 @@ interface REPLInputProps {
   setReplResults: Dispatch<SetStateAction<REPLResultProps[]>>;
   mode: boolean;
   setMode: Dispatch<SetStateAction<boolean>>;
-  // TODO: Fill this with desired props... Maybe something to keep track of the submitted commands
 }
 
-// You can use a custom interface or explicit fields or both! An alternative to the current function header might be:
-// REPLInput(history: string[], setHistory: Dispatch<SetStateAction<string[]>>)
+/**
+ * Function that calls CommandRegistry to execute commands and creates REPLResultProps for each
+ * Also handles the user input to give to CommandRegistry
+ * @param props - REPLInputProps that stores a list of REPLResults and the current user mode
+ * @returns the input component and the submit button
+ */
 export function REPLInput(props: REPLInputProps) {
-  // Remember: let React manage state in your webapp.
-  // Manages the contents of the input box
+
   const [commandString, setCommandString] = useState<string>("");
   const [count, setCount] = useState<number>(0);
   const [file, setFile] = useState<string[][]>([]);
-  // const [mode, setMode] = useState<boolean>(false);
 
+  //handles user input to give to CommandRegistry and execute commands
   const handleArgs = (
     input: string,
     props: REPLInputProps
@@ -51,39 +53,35 @@ export function REPLInput(props: REPLInputProps) {
       }
     };
 
+    //returns REPLResultProps to store
     return {
       output: argFuncResult(props.mode, props.setMode),
       command: command,
       mode: props.mode,
     };
   };
-  /**
-   * We suggest breaking down this component into smaller components, think about the individual pieces
-   * of the REPL and how they connect to each other...
-   */
+
+  //stores REPLResultProps in list, updates submit button count, and resets input
   const handleSubmit = (commandString: string) => {
     setCount(count + 1);
     const replResult = handleArgs(commandString, props);
     props.setReplResults([...props.replResults, replResult]);
     setCommandString("");
+    document.getElementById("Command Input")?.focus();
   };
 
   return (
     <div className="repl-input">
-      {/* This is a comment within the JSX. Notice that it's a TypeScript comment wrapped in
-            braces, so that React knows it should be interpreted as TypeScript */}
-      {/* I opted to use this HTML tag; you don't need to. It structures multiple input fields
-            into a single unit, which makes it easier for screenreaders to navigate. */}
+
       <fieldset>
         <legend>Enter a command:</legend>
         <ControlledInput
           value={commandString}
           setValue={setCommandString}
           ariaLabel={"Command input"}
+          
         />
       </fieldset>
-      {/* TODO WITH TA: Build a handleSubmit function that increments count and displays the text in the button */}
-      {/* TODO: Currently this button just counts up, can we make it push the contents of the input box to the history?*/}
       <button onClick={() => handleSubmit(commandString)}>
         Submitted {count} times
       </button>

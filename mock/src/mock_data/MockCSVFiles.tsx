@@ -1,3 +1,7 @@
+
+/**
+ * const that acts as a mock data set for load, search, and view
+ */
 export const MockCSVFiles: Record<string, Array<Array<string>>> = {
   "census/postsecondary_education.csv": [
     [

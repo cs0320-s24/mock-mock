@@ -4,6 +4,11 @@ export interface tableProps {
   tableInfo: string[][];
 }
 
+/**
+ * const that creates a table from data passed in through tableProps prop
+ * @param props - tableProps that stores data to be transformed into a table
+ * @returns a table
+ */
 const Table = (props: tableProps): JSX.Element => {
   //creates headers for table
   const headers = props.tableInfo[0].map((column) => <th>{column}</th>);

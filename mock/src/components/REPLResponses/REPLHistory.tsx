@@ -7,9 +7,15 @@ interface REPLHistoryProps {
   mode: boolean;
 }
 
+/**
+ * This function takes the REPLResultProps list and creates REPLResults from it to format on page
+ * @param props - REPLResultProps which has commands and results stored and mode that stores whether the user is in mode verbose or brief
+ * @returns the formatted results as a list in scrollable REPLHistory div
+ */
 export function REPLHistory(props: REPLHistoryProps) {
   const ref = useRef<HTMLDivElement>(null);
 
+  //implements autoscroll
   useEffect(() => {
     if (props.commands.length) {
       ref.current?.scrollIntoView({
