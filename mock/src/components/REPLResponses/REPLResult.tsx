@@ -13,15 +13,21 @@ export interface REPLResultProps {
  * @returns - formatted output whether the command is successful or outputs an error. This output can be in mode verbose or brief
  */
 export function REPLResult(props: REPLResultProps): JSX.Element {
+  
+  const isOutputArray = (output: string | string[][]): output is string[][] => {
+    return Array.isArray(output) && Array.isArray(output[0]);
+  };
   //this formats output
   const formatOutput = (props: REPLResultProps) => {
     //if the command is search or view, make output into a table
     if (props.command == "search" || props.command == "view") {
-      return (
-        <div className="output">
-          <Table tableInfo={props.output as string[][]} />
-        </div>
-      );
+      if (isOutputArray(props.output)) {
+        return (
+          <div className="output">
+            <Table tableInfo={props.output} />
+          </div>
+        );
+      }
 
       //if the command is load or mode, then just print out single response
     } else if (props.command == "load" || props.command == "mode") {
@@ -43,7 +49,7 @@ export function REPLResult(props: REPLResultProps): JSX.Element {
 
   let output = formatOutput(props);
   //if verbose is off just use formatted output
-  if (props.mode == false ) {
+  if (props.mode == false) {
     return <div className="result">{output}</div>;
 
     //if verbose is on, add extra info and then formatOutputs
