@@ -1,0 +1,60 @@
+/*
+  This styling is for main components
+*/
+
+.repl {
+  position: relative;
+  min-height: 65vh;
+}
+
+.repl-history {
+  height: 55vh;
+  margin: auto;
+  display: block;
+  overflow: scroll;
+}
+
+.repl-input {
+  margin: auto;
+  height: 10vh;
+}
+.repl-command-box {
+  width: 90%;
+  margin: auto;
+  display: block;
+}
+
+button {
+  margin: auto;
+  display: block;
+}
+
+.badInputStyle {
+  background-color: red;
+  color: white;
+}
+
+.output {
+  padding: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.result {
+  width: max-content;
+  border: 5px solid blue;
+  padding-top: 0px;
+  padding-right: 4px;
+  padding-bottom: 0px;
+  padding-left: 4px;
+  margin: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+  margin: auto;
+}
